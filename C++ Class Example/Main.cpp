@@ -45,48 +45,30 @@ int main() {
 		cout << "Enter '1' to enter another class: ";//asks user if they wish to keep entering new classes
 		cin >> userEnter;//saves user input to variable
 		classesNum++; //increases the  "ID" that is the integer in the array
-		if (userEnter == '1')
-			keepEnter = true;
-		else 
-			keepEnter = false;
-	} while (keepEnter);
-	/*int displayClass = classesNum;
-	cout << "DisplayClass: " << displayClass << " classesNum: " << classesNum;
-
-	do {
-		cout << " Classes taken: " << Student_1.getclassesTaken(displayClass, 0) << "grade:" << Student_1.getgrade(displayClass) << endl;
-		displayClass--;
-	} while (displayClass>=0);*/
-	Student_1.setID();
-	//cout << "assigned ID: " << Student_1.getstudentID() << endl;
-	/*cout << "Enter the semester this class was taken: ";
-	string semester;
-	cin >> semester;
-	Student_1.setSemester(semester);*/
-	//cout <<	Student_1.getsemester();
-	Student_1.setGPA();
-	//cout << "Name:	" << Student_1.getName() << endl << "ID:	" << Student_1.getstudentID() << endl
-	//	<< "GPA:	" << Student_1.getgpa() << endl;
-
-
-		
-	char userGrade;
-	cout << "Select a grade you wish to search for: ";
-	cin >> userGrade;
-	for (int i = 0; i < 100; i++) {
-		if (Student_1.findgrade(userGrade, i) == true) {
-			cout << Student_1.getclassesTaken(i) << "	" << Student_1.getsemester(i) << endl;
+		if (userEnter == '1') //if user enters '1' user must then enter another class,grade,semester
+			keepEnter = true;//keeps loop alive
+		else //user enters anything but a 'a'
+			keepEnter = false;//loop is allowed to close and proceed
+	} while (keepEnter);//while user wishes to enter another grade: 
+	Student_1.setID();//Sets a random integer between 0-999 to student
+	Student_1.setGPA();//calculates GPA based on grades entered		
+	char userGrade; //creates a variable to store user input
+	cout << "Select a grade you wish to search for: "; //asks user to select a letter grade to search for
+	cin >> userGrade;//saves user input to variable
+	for (int i = 0; i < 100; i++) {//loops from 0-100, (entire array)
+		if (Student_1.findgrade(userGrade, i) == true) {//if the array of all grades match the user input grade
+			cout << Student_1.getclassesTaken(i) << "	" << Student_1.getsemester(i) << endl;//outputs the class and grade to screen
 		}
 	}
-	cout << endl <<"Student " << Student_1.getName() << "'s file: \n";
-	cout << "Name:	" << Student_1.getName() << endl << "ID:	" << Student_1.getstudentID() << endl
-		<< "GPA:	" << Student_1.getgpa() << endl;
-	cout <<endl<< endl << "Classes taken: \n";
-	int displayClass = classesNum-1;
+	cout << endl <<"Student " << Student_1.getName() << "'s file: \n"; //displays who's file is slowing using accessor method
+	cout << "Name:	" << Student_1.getName() << endl << "ID:	" << Student_1.getstudentID() << endl //prints students name and ID # via accessor method
+		<< "GPA:	" << Student_1.getgpa() << endl; //displays students gpa via accessor method
+	cout <<endl<< endl << "Classes taken: \n";//prints classes taken to screen with spacing
+	int displayClass = classesNum-1; //creates new variable based off the previous value that increased with each loop and subtracts 1 for continuity
 	do {
-		cout << Student_1.getclassesTaken(displayClass) << "	grade:" << Student_1.getgrade(displayClass)<<"	"<< Student_1.getsemester(displayClass) << endl;
-		displayClass--;
-	} while (displayClass >= 0);
+		cout << Student_1.getclassesTaken(displayClass) << "	grade:" << Student_1.getgrade(displayClass)<<"	"<< Student_1.getsemester(displayClass) << endl; //displays every class taken with grade earned and the semester taken in using accessor method
+		displayClass--; //subtracts 1 from integer value that "is" how many classes still need to be displayed
+	} while (displayClass >= 0); //keeps looping until end of list
 
 	return 0;
 }
